@@ -43,16 +43,27 @@ export default function OnboardingPage() {
     const digits = phone.replace(/\D/g, '')
     const normalized = digits.length === 10 ? `1${digits}` : digits
 
-    // Check if user exists
+    // Check if user exists (maybeSingle returns null instead of 406 when not found)
     const { data: existing } = await supabase
       .from('users')
       .select('*')
       .eq('phone', normalized)
-      .single()
+      .maybeSingle()
+
+    const redirectAfter = () => {
+      const intent = sessionStorage.getItem('joinIntent')
+      if (intent) {
+        sessionStorage.removeItem('joinIntent')
+        const { type, code } = JSON.parse(intent)
+        router.push(`/join/${type}/${code}`)
+      } else {
+        router.push('/home')
+      }
+    }
 
     if (existing) {
       saveUser({ id: existing.id, phone: existing.phone, name: existing.name })
-      router.push('/home')
+      redirectAfter()
       return
     }
 
@@ -71,7 +82,7 @@ export default function OnboardingPage() {
     }
 
     saveUser({ id: created.id, phone: created.phone, name: created.name })
-    router.push('/home')
+    redirectAfter()
   }
 
   const canSubmit = name.trim().length >= 2 && isValidPhone(phone) && !loading
