@@ -140,11 +140,6 @@ export default function LineDetailPage() {
 
         <h1 className="text-xl font-bold text-white leading-snug">{line.question}</h1>
 
-        {!isYesNo && line.over_under_number != null && (
-          <p className="text-xs font-mono text-[#444] mt-1">
-            LINE <span className="text-[#a100f2] font-bold">{line.over_under_number}</span>
-          </p>
-        )}
         <p className="text-[10px] font-mono text-[#444] mt-1">
           closes {formatDeadlineFull(line.deadline)}
         </p>

@@ -48,13 +48,6 @@ export default function LineCard({ line, positions, currentUserId }: LineCardPro
           </div>
         </div>
 
-        {/* Over/under number */}
-        {!isYesNo && line.over_under_number != null && (
-          <p className="text-[11px] font-mono text-[#444] mb-2">
-            LINE <span className="text-[#a100f2] font-bold">{line.over_under_number}</span>
-          </p>
-        )}
-
         {/* Odds bar */}
         <div className="mb-3">
           <OddsBar positions={positions} betType={line.bet_type} size="sm" />

@@ -54,7 +54,7 @@ function CreateForm() {
     const user = getLocalUser()
     if (!user) return router.push('/onboarding')
     if (!question.trim()) return setLineError('Question is required')
-    if (betType === 'over_under' && !overUnderNum) return setLineError('Enter the over/under number')
+
     if (!wagerAmount || parseFloat(wagerAmount) <= 0) return setLineError('Enter a wager amount')
     if (!deadline) return setLineError('Set a deadline')
 
@@ -62,7 +62,7 @@ function CreateForm() {
     const { data, error } = await supabase.from('lines').insert({
       question: question.trim(),
       bet_type: betType,
-      over_under_number: betType === 'over_under' ? parseFloat(overUnderNum) : null,
+      over_under_number: null,
       wager_amount: parseFloat(wagerAmount),
       created_by: user.id,
       party_id: partyId || null,
@@ -145,14 +145,6 @@ function CreateForm() {
               </div>
             </Field>
 
-            {betType === 'over_under' && (
-              <Field label="THE NUMBER">
-                <input type="number" value={overUnderNum} onChange={(e) => setOverUnderNum(e.target.value)}
-                  placeholder="10" step="0.5" min="0"
-                  className="w-full bg-[#111] border border-[#1e1e1e] focus:border-[#a100f2] text-white text-3xl font-mono font-bold px-3 py-3 outline-none transition-colors placeholder:text-[#2a2a2a] rounded-md"
-                />
-              </Field>
-            )}
 
             <Field label="WAGER PER SIDE ($)">
               <div className="flex gap-1.5 mb-2">
