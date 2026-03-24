@@ -152,9 +152,18 @@ export default function OnboardingPage() {
           <button
             type="submit"
             disabled={!canSubmit}
-            className="w-full bg-[#a100f2] text-white py-3.5 font-bold text-sm tracking-wider uppercase disabled:opacity-30 disabled:cursor-not-allowed hover:opacity-90 active:opacity-75 transition-all duration-75 mt-1 rounded-md"
+            className="w-full bg-[#a100f2] text-white py-3.5 font-bold text-sm tracking-wider uppercase disabled:opacity-30 disabled:cursor-not-allowed hover:opacity-90 active:opacity-75 transition-all duration-75 mt-1 rounded-md flex items-center justify-center gap-2"
           >
-            {loading ? 'LOADING...' : 'CONTINUE →'}
+            {loading ? (
+              <>
+                <span>LOADING</span>
+                <span className="flex gap-[3px] items-end pb-[1px]">
+                  <span className="w-[3px] h-[3px] rounded-full bg-white animate-bounce [animation-delay:0ms]" />
+                  <span className="w-[3px] h-[3px] rounded-full bg-white animate-bounce [animation-delay:150ms]" />
+                  <span className="w-[3px] h-[3px] rounded-full bg-white animate-bounce [animation-delay:300ms]" />
+                </span>
+              </>
+            ) : 'CONTINUE →'}
           </button>
         </form>
 

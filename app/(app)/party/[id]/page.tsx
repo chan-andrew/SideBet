@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { createClient } from '@/lib/supabase/server'
 import LineCard from '@/components/LineCard'
 import CopyInviteButton from './CopyInviteButton'
+import DeletePartyButton from './DeletePartyButton'
 import { Line, Position, User, Party } from '@/lib/types'
 
 interface PageProps {
@@ -128,6 +129,13 @@ export default async function PartyPage({ params }: PageProps) {
             ))}
           </div>
         </section>
+      )}
+
+      {/* Delete party — owner only */}
+      {party.created_by === userId && (
+        <div className="px-4 pt-2 pb-2 flex justify-end">
+          <DeletePartyButton partyId={party.id} partyName={party.name} />
+        </div>
       )}
 
       {/* Members list */}
