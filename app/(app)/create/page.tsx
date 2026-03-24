@@ -97,7 +97,7 @@ function CreateForm() {
       {/* Header */}
       <header className="px-4 pt-10 pb-3 border-b border-[#1a1a1a]">
         <button onClick={() => router.back()}
-          className="text-[10px] font-mono text-[#444] hover:text-[#666] transition-colors mb-4 block">
+          className="text-[10px] font-mono text-[#444] hover:text-[#666] active:bg-[#a100f2]/10 active:text-[#a100f2] transition-all duration-75 mb-4 block px-2 py-1 -ml-2 rounded">
           ← BACK
         </button>
         <h1 className="text-2xl font-black text-white tracking-tight">CREATE</h1>
@@ -107,8 +107,8 @@ function CreateForm() {
       <div className="flex border-b border-[#1a1a1a]">
         {(['line', 'party'] as const).map((t) => (
           <button key={t} onClick={() => setTab(t)}
-            className={`flex-1 py-2.5 text-[11px] font-mono font-bold tracking-widest uppercase transition-colors ${
-              tab === t ? 'text-white border-b-2 border-[#a100f2]' : 'text-[#444] hover:text-[#666]'
+            className={`flex-1 py-2.5 text-[11px] font-mono font-bold tracking-widest uppercase transition-all duration-75 ${
+              tab === t ? 'text-white border-b-2 border-[#a100f2]' : 'text-[#444] hover:text-[#666] active:bg-[#a100f2]/10 active:text-[#a100f2]'
             }`}>
             {t === 'line' ? 'NEW LINE' : 'NEW PARTY'}
           </button>
@@ -123,7 +123,7 @@ function CreateForm() {
                 value={question} onChange={(e) => setQuestion(e.target.value)}
                 placeholder={'e.g. "Will Alex drink over 10 beers tonight?"'}
                 rows={3} maxLength={200} autoFocus
-                className="w-full bg-[#111] border border-[#1e1e1e] focus:border-[#a100f2] text-white text-sm px-3 py-3 outline-none transition-colors placeholder:text-[#2a2a2a] resize-none"
+                className="w-full bg-[#111] border border-[#1e1e1e] focus:border-[#a100f2] text-white text-sm px-3 py-3 outline-none transition-colors placeholder:text-[#2a2a2a] resize-none rounded-md"
               />
               <div className="flex justify-end mt-1">
                 <span className="text-[10px] font-mono text-[#333]">{question.length}/200</span>
@@ -134,10 +134,10 @@ function CreateForm() {
               <div className="flex gap-2">
                 {(['yes_no', 'over_under'] as const).map((t) => (
                   <button key={t} type="button" onClick={() => setBetType(t)}
-                    className={`flex-1 py-2.5 text-[11px] font-mono font-bold uppercase tracking-wider border transition-colors ${
+                    className={`flex-1 py-2.5 text-[11px] font-mono font-bold uppercase tracking-wider border transition-all duration-75 rounded-md ${
                       betType === t
-                        ? 'bg-[#a100f2] border-[#a100f2] text-white'
-                        : 'bg-transparent border-[#1e1e1e] text-[#444] hover:border-[#2a2a2a]'
+                        ? 'bg-[#a100f2] border-[#a100f2] text-white active:opacity-75'
+                        : 'bg-transparent border-[#1e1e1e] text-[#444] hover:border-[#2a2a2a] active:bg-[#a100f2]/10 active:text-[#a100f2] active:border-[#a100f2]/30'
                     }`}>
                     {t === 'yes_no' ? 'YES / NO' : 'OVER / UNDER'}
                   </button>
@@ -149,7 +149,7 @@ function CreateForm() {
               <Field label="THE NUMBER">
                 <input type="number" value={overUnderNum} onChange={(e) => setOverUnderNum(e.target.value)}
                   placeholder="10" step="0.5" min="0"
-                  className="w-full bg-[#111] border border-[#1e1e1e] focus:border-[#a100f2] text-white text-3xl font-mono font-bold px-3 py-3 outline-none transition-colors placeholder:text-[#2a2a2a]"
+                  className="w-full bg-[#111] border border-[#1e1e1e] focus:border-[#a100f2] text-white text-3xl font-mono font-bold px-3 py-3 outline-none transition-colors placeholder:text-[#2a2a2a] rounded-md"
                 />
               </Field>
             )}
@@ -158,10 +158,10 @@ function CreateForm() {
               <div className="flex gap-1.5 mb-2">
                 {AMOUNTS.map((a) => (
                   <button key={a} type="button" onClick={() => setWagerAmount(a)}
-                    className={`flex-1 py-2 text-[11px] font-mono font-bold border transition-colors ${
+                    className={`flex-1 py-2 text-[11px] font-mono font-bold border transition-all duration-75 rounded ${
                       wagerAmount === a
-                        ? 'bg-[#a100f2] border-[#a100f2] text-white'
-                        : 'bg-transparent border-[#1e1e1e] text-[#444] hover:border-[#2a2a2a]'
+                        ? 'bg-[#a100f2] border-[#a100f2] text-white active:opacity-75'
+                        : 'bg-transparent border-[#1e1e1e] text-[#444] hover:border-[#2a2a2a] active:bg-[#a100f2]/10 active:text-[#a100f2] active:border-[#a100f2]/30'
                     }`}>
                     ${a}
                   </button>
@@ -169,20 +169,20 @@ function CreateForm() {
               </div>
               <input type="number" value={wagerAmount} onChange={(e) => setWagerAmount(e.target.value)}
                 placeholder="Custom" min="1" step="1"
-                className="w-full bg-[#111] border border-[#1e1e1e] focus:border-[#a100f2] text-white text-xl font-mono font-bold px-3 py-2.5 outline-none transition-colors placeholder:text-[#2a2a2a]"
+                className="w-full bg-[#111] border border-[#1e1e1e] focus:border-[#a100f2] text-white text-xl font-mono font-bold px-3 py-2.5 outline-none transition-colors placeholder:text-[#2a2a2a] rounded-md"
               />
             </Field>
 
             <Field label="DEADLINE">
               <input type="datetime-local" value={deadline} onChange={(e) => setDeadline(e.target.value)}
-                className="w-full bg-[#111] border border-[#1e1e1e] focus:border-[#a100f2] text-white px-3 py-3 outline-none transition-colors font-mono text-sm"
+                className="w-full bg-[#111] border border-[#1e1e1e] focus:border-[#a100f2] text-white px-3 py-3 outline-none transition-colors font-mono text-sm rounded-md"
               />
             </Field>
 
             {parties.length > 0 && (
               <Field label="PARTY (OPTIONAL)">
                 <select value={partyId} onChange={(e) => setPartyId(e.target.value)}
-                  className="w-full bg-[#111] border border-[#1e1e1e] focus:border-[#a100f2] text-white px-3 py-3 outline-none transition-colors font-mono text-sm">
+                  className="w-full bg-[#111] border border-[#1e1e1e] focus:border-[#a100f2] text-white px-3 py-3 outline-none transition-colors font-mono text-sm rounded-md">
                   <option value="">No party</option>
                   {parties.map((p) => <option key={p.id} value={p.id}>{p.name}</option>)}
                 </select>
@@ -192,7 +192,7 @@ function CreateForm() {
             {lineError && <p className="text-[#ef4444] text-xs font-mono">{lineError}</p>}
 
             <button type="submit" disabled={lineLoading}
-              className="w-full bg-[#a100f2] text-white py-3.5 font-bold text-sm tracking-wider uppercase disabled:opacity-40 hover:opacity-90 transition-opacity">
+              className="w-full bg-[#a100f2] text-white py-3.5 font-bold text-sm tracking-wider uppercase disabled:opacity-40 hover:opacity-90 active:opacity-75 transition-all duration-75 rounded-md">
               {lineLoading ? 'POSTING...' : 'POST LINE →'}
             </button>
           </form>
@@ -201,7 +201,7 @@ function CreateForm() {
             <Field label="PARTY NAME">
               <input type="text" value={partyName} onChange={(e) => setPartyName(e.target.value)}
                 placeholder={'e.g. "Friday Boys"'} maxLength={50} autoFocus
-                className="w-full bg-[#111] border border-[#1e1e1e] focus:border-[#a100f2] text-white text-xl font-semibold px-3 py-3 outline-none transition-colors placeholder:text-[#2a2a2a]"
+                className="w-full bg-[#111] border border-[#1e1e1e] focus:border-[#a100f2] text-white text-xl font-semibold px-3 py-3 outline-none transition-colors placeholder:text-[#2a2a2a] rounded-md"
               />
             </Field>
 
@@ -212,7 +212,7 @@ function CreateForm() {
             {partyError && <p className="text-[#ef4444] text-xs font-mono">{partyError}</p>}
 
             <button type="submit" disabled={partyLoading || !partyName.trim()}
-              className="w-full bg-[#a100f2] text-white py-3.5 font-bold text-sm tracking-wider uppercase disabled:opacity-30 hover:opacity-90 transition-opacity">
+              className="w-full bg-[#a100f2] text-white py-3.5 font-bold text-sm tracking-wider uppercase disabled:opacity-30 hover:opacity-90 active:opacity-75 transition-all duration-75 rounded-md">
               {partyLoading ? 'CREATING...' : 'CREATE PARTY →'}
             </button>
           </form>

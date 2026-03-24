@@ -46,13 +46,13 @@ export default function BottomNav() {
   const pathname = usePathname()
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 bg-[#0a0a0a] border-t border-[#1a1a1a] z-50">
+    <nav className="fixed bottom-0 left-0 right-0 bg-[#0a0a0a] border-t border-[#1a1a1a] z-50 rounded-t-xl">
       <div className="max-w-lg mx-auto flex items-stretch h-14">
         {navItems.map((item) => {
           const active = pathname === item.href || pathname.startsWith(item.href + '/')
           return (
             <Link key={item.href} href={item.href}
-              className="flex-1 flex flex-col items-center justify-center gap-1">
+              className="flex-1 flex flex-col items-center justify-center gap-1 active:bg-[#a100f2]/10 transition-colors duration-75 rounded-md">
               {item.icon(active)}
               <span
                 className="text-[9px] font-mono font-bold tracking-widest"

@@ -86,7 +86,7 @@ export default function ResolvePage() {
     <div className="flex flex-col">
       <header className="px-4 pt-10 pb-4 border-b border-[#1a1a1a]">
         <button onClick={() => router.push(`/line/${id}`)}
-          className="text-[10px] font-mono text-[#444] hover:text-[#666] transition-colors mb-4 block">
+          className="text-[10px] font-mono text-[#444] hover:text-[#666] active:bg-[#a100f2]/10 active:text-[#a100f2] transition-all duration-75 mb-4 block px-2 py-1 -ml-2 rounded">
           ← BACK
         </button>
         <p className="text-[10px] font-mono font-bold tracking-[0.2em] text-[#a100f2] mb-1">
@@ -110,10 +110,10 @@ export default function ResolvePage() {
               <div className="flex gap-2">
                 {sides.map((side) => (
                   <button key={side} onClick={() => setOutcome(side)}
-                    className={`flex-1 py-7 text-center border transition-all ${
+                    className={`flex-1 py-7 text-center border transition-all duration-75 rounded-lg ${
                       outcome === side
-                        ? 'bg-[#a100f2] border-[#a100f2]'
-                        : 'bg-transparent border-[#1e1e1e] hover:border-[#2a2a2a]'
+                        ? 'bg-[#a100f2] border-[#a100f2] active:opacity-75'
+                        : 'bg-transparent border-[#1e1e1e] hover:border-[#2a2a2a] active:bg-[#a100f2]/10 active:border-[#a100f2]/30 active:scale-[0.98]'
                     }`}>
                     <span className={`text-3xl font-black font-mono ${outcome === side ? 'text-white' : 'text-[#444]'}`}>
                       {getSideLabel(side, line.bet_type)}
@@ -125,7 +125,7 @@ export default function ResolvePage() {
 
             {/* Settlement preview */}
             {outcome && positions.length > 0 && (
-              <div className="border border-[#1a1a1a]">
+              <div className="border border-[#1a1a1a] rounded-lg overflow-hidden">
                 <div className="px-3 py-2 border-b border-[#1a1a1a]">
                   <span className="text-[10px] font-mono font-bold tracking-[0.2em] text-[#444]">
                     SETTLEMENT PREVIEW
@@ -159,7 +159,7 @@ export default function ResolvePage() {
             {error && <p className="text-[#ef4444] text-xs font-mono">{error}</p>}
 
             <button onClick={handleResolve} disabled={!outcome || resolving}
-              className="w-full py-3.5 font-bold text-sm uppercase tracking-wider bg-[#a100f2] text-white disabled:opacity-30 hover:opacity-90 transition-opacity">
+              className="w-full py-3.5 font-bold text-sm uppercase tracking-wider bg-[#a100f2] text-white disabled:opacity-30 hover:opacity-90 active:opacity-75 transition-all duration-75 rounded-md">
               {resolving ? 'SETTLING...' : outcome ? `CALL IT: ${getSideLabel(outcome, line.bet_type)} →` : 'SELECT OUTCOME'}
             </button>
           </>
@@ -173,7 +173,7 @@ export default function ResolvePage() {
 
             {/* Final settlement table */}
             {positions.length > 0 && outcome && (
-              <div className="border border-[#1a1a1a]">
+              <div className="border border-[#1a1a1a] rounded-lg overflow-hidden">
                 <div className="px-3 py-2 border-b border-[#1a1a1a] flex items-center justify-between">
                   <span className="text-[10px] font-mono font-bold tracking-[0.2em] text-[#444]">SETTLEMENT</span>
                   <span className="text-[10px] font-mono text-[#333]">{positions.length} participants</span>
@@ -218,7 +218,7 @@ export default function ResolvePage() {
             )}
 
             <button onClick={() => router.push('/home')}
-              className="w-full py-3 border border-[#1e1e1e] text-[11px] font-mono font-bold tracking-widest text-[#444] hover:text-[#666] hover:border-[#2a2a2a] transition-colors uppercase">
+              className="w-full py-3 border border-[#1e1e1e] text-[11px] font-mono font-bold tracking-widest text-[#444] hover:text-[#666] hover:border-[#2a2a2a] active:bg-[#a100f2]/10 active:text-[#a100f2] active:border-[#a100f2]/30 transition-all duration-75 uppercase rounded-md">
               BACK TO HOME
             </button>
           </>

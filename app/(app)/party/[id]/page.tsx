@@ -48,7 +48,7 @@ export default async function PartyPage({ params }: PageProps) {
       {/* Header */}
       <header className="px-4 pt-10 pb-4 border-b border-[#1a1a1a]">
         <Link href="/home"
-          className="text-[10px] font-mono text-[#444] hover:text-[#666] transition-colors mb-4 block">
+          className="text-[10px] font-mono text-[#444] hover:text-[#666] active:bg-[#a100f2]/10 active:text-[#a100f2] transition-all duration-75 mb-4 block px-2 py-1 -ml-2 rounded w-fit">
           ← BACK
         </Link>
         <div className="flex items-start justify-between">
@@ -57,7 +57,7 @@ export default async function PartyPage({ params }: PageProps) {
             <h1 className="text-2xl font-black text-white tracking-tight">{party.name}</h1>
           </div>
           <Link href={`/create?partyId=${party.id}`}
-            className="bg-[#a100f2] text-white px-3 py-2 text-[11px] font-mono font-bold tracking-wider uppercase hover:opacity-90 transition-opacity">
+            className="bg-[#a100f2] text-white px-3 py-2 text-[11px] font-mono font-bold tracking-wider uppercase hover:opacity-90 active:opacity-75 transition-all duration-75 rounded-md">
             + LINE
           </Link>
         </div>
@@ -67,7 +67,7 @@ export default async function PartyPage({ params }: PageProps) {
           <div className="flex -space-x-1.5">
             {members.slice(0, 6).map((m) => (
               <div key={m.id} title={m.name}
-                className="w-6 h-6 bg-[#1a1a1a] border border-[#0a0a0a] flex items-center justify-center">
+                className="w-6 h-6 bg-[#1a1a1a] border border-[#0a0a0a] flex items-center justify-center rounded-full">
                 <span className="text-[9px] font-mono font-bold text-[#555]">
                   {m.name[0].toUpperCase()}
                 </span>
@@ -100,12 +100,12 @@ export default async function PartyPage({ params }: PageProps) {
           <div className="border border-dashed border-[#1a1a1a] py-8 text-center">
             <p className="text-[11px] font-mono text-[#333] mb-3">No open lines</p>
             <Link href={`/create?partyId=${party.id}`}
-              className="text-[11px] font-mono text-[#a100f2] hover:opacity-80 transition-opacity">
+              className="text-[11px] font-mono text-[#a100f2] hover:opacity-80 active:opacity-60 transition-all duration-75">
               Post the first line →
             </Link>
           </div>
         ) : (
-          <div className="flex flex-col border border-[#1a1a1a] divide-y divide-[#1a1a1a]">
+          <div className="flex flex-col border border-[#1a1a1a] divide-y divide-[#1a1a1a] rounded-lg overflow-hidden">
             {openLines.map((line) => (
               <LineCard key={line.id} line={line}
                 positions={positions.filter((p) => p.line_id === line.id)}
@@ -120,7 +120,7 @@ export default async function PartyPage({ params }: PageProps) {
           <p className="text-[10px] font-mono font-bold tracking-[0.2em] text-[#444] mb-3">
             SETTLED ({resolvedLines.length})
           </p>
-          <div className="flex flex-col border border-[#1a1a1a] divide-y divide-[#1a1a1a]">
+          <div className="flex flex-col border border-[#1a1a1a] divide-y divide-[#1a1a1a] rounded-lg overflow-hidden">
             {resolvedLines.map((line) => (
               <LineCard key={line.id} line={line}
                 positions={positions.filter((p) => p.line_id === line.id)}
@@ -133,11 +133,11 @@ export default async function PartyPage({ params }: PageProps) {
       {/* Members list */}
       <section className="px-4 pt-6 pb-4">
         <p className="text-[10px] font-mono font-bold tracking-[0.2em] text-[#444] mb-3">MEMBERS</p>
-        <div className="border border-[#1a1a1a] divide-y divide-[#1a1a1a]">
+        <div className="border border-[#1a1a1a] divide-y divide-[#1a1a1a] rounded-lg overflow-hidden">
           {members.map((m) => (
             <div key={m.id} className="flex items-center justify-between px-3 py-2.5 bg-[#0f0f0f]">
               <div className="flex items-center gap-2.5">
-                <div className="w-7 h-7 bg-[#1a1a1a] border border-[#1e1e1e] flex items-center justify-center">
+                <div className="w-7 h-7 bg-[#1a1a1a] border border-[#1e1e1e] flex items-center justify-center rounded-full">
                   <span className="text-[11px] font-mono font-bold text-[#555]">
                     {m.name[0].toUpperCase()}
                   </span>

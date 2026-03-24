@@ -120,7 +120,7 @@ export default function OnboardingPage() {
               maxLength={30}
               autoFocus
               autoComplete="name"
-              className="w-full bg-[#111] border border-[#1e1e1e] focus:border-[#a100f2] text-white text-lg font-semibold px-3 py-3 outline-none transition-colors placeholder:text-[#333]"
+              className="w-full bg-[#111] border border-[#1e1e1e] focus:border-[#a100f2] text-white text-lg font-semibold px-3 py-3 outline-none transition-colors placeholder:text-[#333] rounded-md"
             />
           </div>
 
@@ -129,7 +129,7 @@ export default function OnboardingPage() {
             <label className="block text-[10px] font-mono font-bold tracking-[0.2em] text-[#555] mb-1.5">
               PHONE
             </label>
-            <div className="flex border border-[#1e1e1e] focus-within:border-[#a100f2] transition-colors">
+            <div className="flex border border-[#1e1e1e] focus-within:border-[#a100f2] transition-colors rounded-md overflow-hidden">
               <div className="flex items-center px-3 border-r border-[#1e1e1e] bg-[#0f0f0f]">
                 <span className="text-[#444] text-sm font-mono">+1</span>
               </div>
@@ -152,7 +152,7 @@ export default function OnboardingPage() {
           <button
             type="submit"
             disabled={!canSubmit}
-            className="w-full bg-[#a100f2] text-white py-3.5 font-bold text-sm tracking-wider uppercase disabled:opacity-30 disabled:cursor-not-allowed hover:opacity-90 transition-opacity mt-1"
+            className="w-full bg-[#a100f2] text-white py-3.5 font-bold text-sm tracking-wider uppercase disabled:opacity-30 disabled:cursor-not-allowed hover:opacity-90 active:opacity-75 transition-all duration-75 mt-1 rounded-md"
           >
             {loading ? 'LOADING...' : 'CONTINUE →'}
           </button>

@@ -25,7 +25,7 @@ export default function LineCard({ line, positions, currentUserId }: LineCardPro
 
   return (
     <Link href={`/line/${line.id}`}>
-      <div className="bg-[#0f0f0f] border border-[#1e1e1e] p-4 hover:border-[#2a2a2a] transition-colors cursor-pointer">
+      <div className="bg-[#0f0f0f] border border-[#1e1e1e] p-4 hover:border-[#2a2a2a] active:bg-[#151515] transition-colors duration-75 cursor-pointer rounded-lg">
         {/* Status + question */}
         <div className="flex items-start justify-between gap-3 mb-3">
           <p className="text-white font-semibold text-[15px] leading-snug flex-1">

@@ -49,7 +49,7 @@ export default async function ProfilePage() {
             <h1 className="text-3xl font-black text-white tracking-tight">{profile.name}</h1>
             <p className="text-[11px] font-mono text-[#444] mt-1">{profile.phone}</p>
           </div>
-          <div className="w-12 h-12 bg-[#111] border border-[#1e1e1e] flex items-center justify-center">
+          <div className="w-12 h-12 bg-[#111] border border-[#1e1e1e] flex items-center justify-center rounded-full">
             <span className="text-xl font-black text-[#a100f2]">{profile.name[0].toUpperCase()}</span>
           </div>
         </div>
@@ -57,7 +57,7 @@ export default async function ProfilePage() {
 
       {/* Stats — trading terminal style */}
       <section className="border-b border-[#1a1a1a]">
-        <div className="grid grid-cols-2 divide-x divide-y divide-[#1a1a1a]">
+        <div className="grid grid-cols-2 divide-x divide-y divide-[#1a1a1a] rounded-lg overflow-hidden">
           <Stat label="WIN RATE" value={`${winRate.toFixed(1)}%`}
             accent={winRate >= 50} />
           <Stat label="NET P&L"
@@ -84,14 +84,14 @@ export default async function ProfilePage() {
       {resolvedLines.length > 0 && (
         <section className="px-4 pt-5">
           <p className="text-[10px] font-mono font-bold tracking-[0.2em] text-[#444] mb-3">HISTORY</p>
-          <div className="border border-[#1a1a1a] divide-y divide-[#1a1a1a]">
+          <div className="border border-[#1a1a1a] divide-y divide-[#1a1a1a] rounded-lg overflow-hidden">
             {resolvedLines.slice(0, 12).map((line) => {
               const pos = positions.find((p) => p.line_id === line.id)
               if (!pos) return null
               const won = pos.side === line.outcome
               return (
                 <Link key={line.id} href={`/line/${line.id}`}>
-                  <div className="flex items-center bg-[#0f0f0f] hover:bg-[#111] transition-colors px-3 py-3 gap-3">
+                  <div className="flex items-center bg-[#0f0f0f] hover:bg-[#111] active:bg-[#151515] transition-all duration-75 px-3 py-3 gap-3">
                     <div className="w-1 h-8 shrink-0"
                       style={{ backgroundColor: won ? '#a100f2' : '#1e1e1e' }} />
                     <p className="text-sm text-[#888] flex-1 truncate">{line.question}</p>

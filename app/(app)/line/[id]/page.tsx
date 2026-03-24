@@ -113,7 +113,7 @@ export default function LineDetailPage() {
       {/* Header */}
       <header className="px-4 pt-10 pb-4 border-b border-[#1a1a1a]">
         <button onClick={() => router.back()}
-          className="text-[10px] font-mono text-[#444] hover:text-[#666] transition-colors mb-4 block">
+          className="text-[10px] font-mono text-[#444] hover:text-[#666] active:bg-[#a100f2]/10 active:text-[#a100f2] transition-all duration-75 mb-4 block px-2 py-1 -ml-2 rounded">
           ← BACK
         </button>
 
@@ -179,7 +179,7 @@ export default function LineDetailPage() {
         ) : myPosition ? (
           <div>
             <p className="text-[10px] font-mono text-[#444] mb-3">YOUR POSITION</p>
-            <div className="border border-[#a100f2]/20 bg-[#a100f2]/5 p-4 flex items-center justify-between">
+            <div className="border border-[#a100f2]/20 bg-[#a100f2]/5 p-4 flex items-center justify-between rounded-lg">
               <div>
                 <p className="text-3xl font-black font-mono text-[#a100f2]">
                   {getSideLabel(myPosition.side, line.bet_type)}
@@ -210,10 +210,10 @@ export default function LineDetailPage() {
                 const isSel = selectedSide === side
                 return (
                   <button key={side} onClick={() => setSelectedSide(side)}
-                    className={`flex-1 py-5 flex flex-col items-center gap-1.5 border transition-all ${
+                    className={`flex-1 py-5 flex flex-col items-center gap-1.5 border transition-all duration-75 rounded-lg ${
                       isSel
-                        ? 'bg-[#a100f2] border-[#a100f2]'
-                        : 'bg-transparent border-[#1e1e1e] hover:border-[#2a2a2a]'
+                        ? 'bg-[#a100f2] border-[#a100f2] active:opacity-75'
+                        : 'bg-transparent border-[#1e1e1e] hover:border-[#2a2a2a] active:bg-[#a100f2]/10 active:border-[#a100f2]/30 active:scale-[0.98]'
                     }`}>
                     <span className={`text-2xl font-black font-mono ${isSel ? 'text-white' : 'text-[#555]'}`}>
                       {getSideLabel(side, line.bet_type)}
@@ -229,7 +229,7 @@ export default function LineDetailPage() {
             {betError && <p className="text-[#ef4444] text-xs font-mono mb-3">{betError}</p>}
 
             <button onClick={handleTakeSide} disabled={!selectedSide || betLoading}
-              className="w-full py-3.5 font-bold text-sm uppercase tracking-wider transition-opacity disabled:opacity-30 bg-[#a100f2] text-white hover:opacity-90">
+              className="w-full py-3.5 font-bold text-sm uppercase tracking-wider transition-all duration-75 disabled:opacity-30 bg-[#a100f2] text-white hover:opacity-90 active:opacity-75 rounded-md">
               {betLoading ? 'SUBMITTING...' : selectedSide
                 ? `BET ${getSideLabel(selectedSide, line.bet_type)} — ${formatCurrency(line.wager_amount)}`
                 : 'SELECT A SIDE'}
@@ -244,7 +244,7 @@ export default function LineDetailPage() {
       {isCreator && !isResolved && (
         <section className="px-4 py-4 border-b border-[#1a1a1a]">
           <a href={`/resolve/${line.id}`}
-            className="block w-full text-center py-3 border border-[#a100f2]/30 text-[#a100f2] text-[11px] font-mono font-bold tracking-widest uppercase hover:bg-[#a100f2]/5 transition-colors">
+            className="block w-full text-center py-3 border border-[#a100f2]/30 text-[#a100f2] text-[11px] font-mono font-bold tracking-widest uppercase hover:bg-[#a100f2]/5 active:bg-[#a100f2]/15 transition-all duration-75 rounded-md">
             CALL THE OUTCOME →
           </a>
         </section>
@@ -262,7 +262,7 @@ export default function LineDetailPage() {
               setCopied(true)
               setTimeout(() => setCopied(false), 2000)
             }}
-            className="text-[10px] font-mono text-[#444] hover:text-[#666] transition-colors">
+            className="text-[10px] font-mono text-[#444] hover:text-[#666] active:text-[#a100f2] transition-all duration-75 px-2 py-1 -mr-2 rounded">
             {copied ? 'COPIED ✓' : 'SHARE'}
           </button>
         </div>
@@ -270,14 +270,14 @@ export default function LineDetailPage() {
         {positions.length === 0 ? (
           <p className="text-[11px] font-mono text-[#333] py-2">No positions yet.</p>
         ) : (
-          <div className="border border-[#1a1a1a] divide-y divide-[#1a1a1a]">
+          <div className="border border-[#1a1a1a] divide-y divide-[#1a1a1a] rounded-lg overflow-hidden">
             {positions.map((pos) => {
               const posUser = users[pos.user_id]
               const isMe = pos.user_id === currentUser?.id
               return (
                 <div key={pos.id} className="flex items-center justify-between px-3 py-2.5 bg-[#0f0f0f]">
                   <div className="flex items-center gap-2.5">
-                    <div className="w-6 h-6 bg-[#1a1a1a] border border-[#1e1e1e] flex items-center justify-center">
+                    <div className="w-6 h-6 bg-[#1a1a1a] border border-[#1e1e1e] flex items-center justify-center rounded-full">
                       <span className="text-[10px] font-mono font-bold text-[#444]">
                         {posUser?.name?.[0]?.toUpperCase() ?? '?'}
                       </span>

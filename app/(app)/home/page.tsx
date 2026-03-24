@@ -73,7 +73,7 @@ export default async function HomePage() {
           <p className="text-[10px] font-mono text-[#444] mt-0.5">{profile.name}</p>
         </div>
         <Link href="/create"
-          className="bg-[#a100f2] text-white px-3 py-2 text-[11px] font-mono font-bold tracking-wider uppercase hover:opacity-90 transition-opacity">
+          className="bg-[#a100f2] text-white px-3 py-2 text-[11px] font-mono font-bold tracking-wider uppercase hover:opacity-90 active:opacity-75 transition-all duration-75 rounded-md">
           + NEW LINE
         </Link>
       </header>
@@ -96,7 +96,7 @@ export default async function HomePage() {
             </Link>
           </div>
         ) : (
-          <div className="flex flex-col gap-px border border-[#1a1a1a]">
+          <div className="flex flex-col gap-px border border-[#1a1a1a] rounded-lg overflow-hidden">
             {lines.map((line) => (
               <LineCard
                 key={line.id}
@@ -130,10 +130,10 @@ export default async function HomePage() {
             </Link>
           </div>
         ) : (
-          <div className="flex flex-col border border-[#1a1a1a] divide-y divide-[#1a1a1a]">
+          <div className="flex flex-col border border-[#1a1a1a] divide-y divide-[#1a1a1a] rounded-lg overflow-hidden">
             {parties.map((party) => (
               <Link key={party.id} href={`/party/${party.id}`}>
-                <div className="bg-[#0f0f0f] px-4 py-3 flex items-center justify-between hover:bg-[#111] transition-colors">
+                <div className="bg-[#0f0f0f] px-4 py-3 flex items-center justify-between hover:bg-[#111] active:bg-[#151515] transition-all duration-75">
                   <div>
                     <p className="text-white text-sm font-semibold">{party.name}</p>
                     <p className="text-[10px] font-mono text-[#444] mt-0.5">
